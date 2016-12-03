@@ -206,7 +206,10 @@ struct CmdlineParser {
       };
       load_value_ = []() -> TArg& {
         assert(false && "Should not be appending values to ignored arguments");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnull-dereference"
         return *reinterpret_cast<TArg*>(0);  // Blow up.
+#pragma clang diagnostic pop
       };
 
       save_value_specified_ = true;
@@ -270,7 +273,10 @@ struct CmdlineParser {
 
       load_value_ = []() -> TArg& {
         assert(false && "No load value function defined");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnull-dereference"
         return *reinterpret_cast<TArg*>(0);  // Blow up.
+#pragma clang diagnostic pop
       };
     }
 
