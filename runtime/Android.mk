@@ -502,9 +502,6 @@ endif
     $$(eval $$(call set-target-local-clang-vars))
     $$(eval $$(call set-target-local-cflags-vars,$(2)))
     LOCAL_CLANG_ASFLAGS_arm += -no-integrated-as
-    ifneq (,$(filter $(DEX2OAT_TARGET_CPU_VARIANT),krait))
-      LOCAL_CLANG_ASFLAGS_arm += -mcpu=cortex-a15
-    endif
     LOCAL_CFLAGS_$(DEX2OAT_TARGET_ARCH) += -DART_DEFAULT_INSTRUCTION_SET_FEATURES="$(LIBART_TARGET_DEFAULT_INSTRUCTION_SET_FEATURES)"
     LOCAL_CFLAGS_$(2ND_DEX2OAT_TARGET_ARCH) += -DART_DEFAULT_INSTRUCTION_SET_FEATURES="$(2ND_LIBART_TARGET_DEFAULT_INSTRUCTION_SET_FEATURES)"
   else # host
