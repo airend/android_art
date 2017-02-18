@@ -37,6 +37,7 @@ class PACKED(4) OatQuickMethodHeader {
                        uint32_t code_size = 0U);
 
   ~OatQuickMethodHeader();
+  OatQuickMethodHeader(OatQuickMethodHeader&&) = default;
 
   static OatQuickMethodHeader* FromCodePointer(const void* code_ptr) {
     uintptr_t code = reinterpret_cast<uintptr_t>(code_ptr);
