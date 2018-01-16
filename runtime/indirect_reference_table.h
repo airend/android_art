@@ -230,6 +230,8 @@ class IrtIterator {
  public:
   IrtIterator(IrtEntry* table, size_t i, size_t capacity) SHARED_REQUIRES(Locks::mutator_lock_)
       : table_(table), i_(i), capacity_(capacity) {
+    // capacity_ is used in some target; has warning with unused attribute.
+    UNUSED(capacity_);
   }
 
   IrtIterator& operator++() SHARED_REQUIRES(Locks::mutator_lock_) {
