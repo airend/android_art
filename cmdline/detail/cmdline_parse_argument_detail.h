@@ -443,7 +443,7 @@ namespace art {
 
           assert(!argument_info_.has_range_);
 
-          return result;
+          return std::move(result);
         }
 
         CmdlineParseResult<TArg> result = type_parser.Parse(argument);
