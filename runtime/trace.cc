@@ -364,7 +364,7 @@ void Trace::Start(const char* trace_filename, int trace_fd, size_t buffer_size, 
     if (the_trace_ != nullptr) {
       LOG(ERROR) << "Trace already in progress, ignoring this request";
     } else {
-      enable_stats = (flags && kTraceCountAllocs) != 0;
+      enable_stats = (flags & kTraceCountAllocs) != 0;
       the_trace_ = new Trace(trace_file.release(), trace_filename, buffer_size, flags, output_mode,
                              trace_mode);
       if (trace_mode == TraceMode::kSampling) {
@@ -544,7 +544,7 @@ void Trace::Resume() {
   Runtime* runtime = Runtime::Current();
 
   // Enable count of allocs if specified in the flags.
-  bool enable_stats = (the_trace->flags_ && kTraceCountAllocs) != 0;
+  bool enable_stats = (the_trace->flags_ & kTraceCountAllocs) != 0;
 
   {
     gc::ScopedGCCriticalSection gcs(self,
