@@ -22,7 +22,7 @@ namespace art {
 
 bool CompilerFilter::IsBytecodeCompilationEnabled(Filter filter) {
   switch (filter) {
-    case CompilerFilter::kVerifyNone:
+    case CompilerFilter::kVerifyNothing:
     case CompilerFilter::kVerifyAtRuntime:
     case CompilerFilter::kVerifyProfile:
     case CompilerFilter::kInterpretOnly: return false;
@@ -41,7 +41,7 @@ bool CompilerFilter::IsBytecodeCompilationEnabled(Filter filter) {
 
 bool CompilerFilter::IsJniCompilationEnabled(Filter filter) {
   switch (filter) {
-    case CompilerFilter::kVerifyNone:
+    case CompilerFilter::kVerifyNothing:
     case CompilerFilter::kVerifyAtRuntime: return false;
 
     case CompilerFilter::kVerifyProfile:
@@ -60,7 +60,7 @@ bool CompilerFilter::IsJniCompilationEnabled(Filter filter) {
 
 bool CompilerFilter::IsVerificationEnabled(Filter filter) {
   switch (filter) {
-    case CompilerFilter::kVerifyNone:
+    case CompilerFilter::kVerifyNothing:
     case CompilerFilter::kVerifyAtRuntime: return false;
 
     case CompilerFilter::kVerifyProfile:
@@ -85,7 +85,7 @@ bool CompilerFilter::DependsOnImageChecksum(Filter filter) {
 
 bool CompilerFilter::DependsOnProfile(Filter filter) {
   switch (filter) {
-    case CompilerFilter::kVerifyNone:
+    case CompilerFilter::kVerifyNothing:
     case CompilerFilter::kVerifyAtRuntime:
     case CompilerFilter::kInterpretOnly:
     case CompilerFilter::kSpace:
@@ -104,7 +104,7 @@ bool CompilerFilter::DependsOnProfile(Filter filter) {
 
 CompilerFilter::Filter CompilerFilter::GetNonProfileDependentFilterFrom(Filter filter) {
   switch (filter) {
-    case CompilerFilter::kVerifyNone:
+    case CompilerFilter::kVerifyNothing:
     case CompilerFilter::kVerifyAtRuntime:
     case CompilerFilter::kInterpretOnly:
     case CompilerFilter::kSpace:
@@ -136,7 +136,7 @@ bool CompilerFilter::IsAsGoodAs(Filter current, Filter target) {
 
 std::string CompilerFilter::NameOfFilter(Filter filter) {
   switch (filter) {
-    case CompilerFilter::kVerifyNone: return "verify-none";
+    case CompilerFilter::kVerifyNothing: return "verify-none";
     case CompilerFilter::kVerifyAtRuntime: return "verify-at-runtime";
     case CompilerFilter::kVerifyProfile: return "verify-profile";
     case CompilerFilter::kInterpretOnly: return "interpret-only";
@@ -156,7 +156,7 @@ bool CompilerFilter::ParseCompilerFilter(const char* option, Filter* filter) {
   CHECK(filter != nullptr);
 
   if (strcmp(option, "verify-none") == 0) {
-    *filter = kVerifyNone;
+    *filter = kVerifyNothing;
   } else if (strcmp(option, "interpret-only") == 0) {
     *filter = kInterpretOnly;
   } else if (strcmp(option, "verify-profile") == 0) {

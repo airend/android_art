@@ -26,7 +26,7 @@ namespace art {
   // Use the value-carrying CmdlineParseResult<T> to get an additional value out in a success case.
   struct CmdlineResult {
     enum Status {
-      kSuccess,
+      kSuccCmd,
       // Error codes:
       kUsage,
       kFailure,
@@ -40,9 +40,9 @@ namespace art {
     }
 
     // Check if the operation has succeeded.
-    bool IsSuccess() const { return status_ == kSuccess; }
+    bool IsSuccess() const { return status_ == kSuccCmd; }
     // Check if the operation was not a success.
-    bool IsError() const { return status_ != kSuccess; }
+    bool IsError() const { return status_ != kSuccCmd; }
     // Get the specific status, regardless of whether it's failure or success.
     Status GetStatus() const { return status_; }
 
@@ -55,13 +55,13 @@ namespace art {
     // Constructor with an error status, copying the message.
     CmdlineResult(Status status, const std::string& message)
       : status_(status), message_(message) {
-      assert(status != kSuccess);
+      assert(status != kSuccCmd);
     }
 
     // Constructor with an error status, taking over the message.
     CmdlineResult(Status status, std::string&& message)
       : status_(status), message_(message) {
-      assert(status != kSuccess);
+      assert(status != kSuccCmd);
     }
 
     // Make sure copying exists
@@ -77,8 +77,8 @@ namespace art {
   // TODO: code-generate this
   static inline std::ostream& operator<<(std::ostream& stream, CmdlineResult::Status status) {
     switch (status) {
-      case CmdlineResult::kSuccess:
-        stream << "kSuccess";
+      case CmdlineResult::kSuccCmd:
+        stream << "kSuccCmd";
         break;
       case CmdlineResult::kUsage:
         stream << "kUsage";

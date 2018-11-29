@@ -227,7 +227,7 @@ Runtime::Runtime()
       is_native_bridge_loaded_(false),
       is_native_debuggable_(false),
       zygote_max_failed_boots_(0),
-      experimental_flags_(ExperimentalFlags::kNone),
+      experimental_flags_(ExperimentalFlags::kNothing),
       oat_file_manager_(nullptr),
       is_low_memory_mode_(false),
       safe_mode_(false),

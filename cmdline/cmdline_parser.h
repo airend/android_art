@@ -605,7 +605,7 @@ struct CmdlineParser {
       // TODO: also handle ignoring arguments for backwards compatibility
     }  // for
 
-    return CmdlineResult(CmdlineResult::kSuccess);
+    return CmdlineResult(CmdlineResult::kSuccCmd);
   }
 
   bool ignore_unrecognized_ = false;

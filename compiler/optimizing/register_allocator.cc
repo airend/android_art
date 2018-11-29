@@ -1717,7 +1717,7 @@ void RegisterAllocator::ConnectSiblings(LiveInterval* interval) {
         }
         case Location::kStackSlot:  // Fall-through
         case Location::kDoubleStackSlot:  // Fall-through
-        case Location::kConstant: {
+        case Location::kConst: {
           // Nothing to do.
           break;
         }

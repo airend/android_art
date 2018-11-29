@@ -123,11 +123,11 @@ struct CmdlineParseResult : CmdlineResult {
 
  private:
   explicit CmdlineParseResult(const T& value)
-    : CmdlineResult(kSuccess), value_(value), has_value_(true) {}
+    : CmdlineResult(kSuccCmd), value_(value), has_value_(true) {}
   explicit CmdlineParseResult(T&& value)
-    : CmdlineResult(kSuccess), value_(std::forward<T>(value)), has_value_(true) {}
+    : CmdlineResult(kSuccCmd), value_(std::forward<T>(value)), has_value_(true) {}
   CmdlineParseResult()
-    : CmdlineResult(kSuccess), value_(), has_value_(false) {}
+    : CmdlineResult(kSuccCmd), value_(), has_value_(false) {}
 
   T value_;
   bool has_value_ = false;

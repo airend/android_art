@@ -2421,7 +2421,7 @@ void EncodedStaticFieldValueIterator::Next() {
   case kFloat:
     jval_.i = ReadUnsignedInt(ptr_, value_arg, true);
     break;
-  case kDouble:
+  case kDblDex:
     jval_.j = ReadUnsignedLong(ptr_, value_arg, true);
     break;
   case kString:
@@ -2459,7 +2459,7 @@ void EncodedStaticFieldValueIterator::ReadValueToField(ArtField* field) const {
     case kInt:     field->SetInt<kTransactionActive>(field->GetDeclaringClass(), jval_.i); break;
     case kLong:    field->SetLong<kTransactionActive>(field->GetDeclaringClass(), jval_.j); break;
     case kFloat:   field->SetFloat<kTransactionActive>(field->GetDeclaringClass(), jval_.f); break;
-    case kDouble:  field->SetDouble<kTransactionActive>(field->GetDeclaringClass(), jval_.d); break;
+    case kDblDex:  field->SetDouble<kTransactionActive>(field->GetDeclaringClass(), jval_.d); break;
     case kNull:    field->SetObject<kTransactionActive>(field->GetDeclaringClass(), nullptr); break;
     case kString: {
       mirror::String* resolved = linker_->ResolveString(dex_file_, jval_.i, *dex_cache_);

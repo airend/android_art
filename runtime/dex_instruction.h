@@ -156,7 +156,7 @@ class Instruction {
   };
 
   enum VerifyFlag {
-    kVerifyNone               = 0x000000,
+    kVerifyNothing            = 0x000000,
     kVerifyRegA               = 0x000001,
     kVerifyRegAWide           = 0x000002,
     kVerifyRegB               = 0x000004,

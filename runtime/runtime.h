@@ -554,7 +554,7 @@ class Runtime {
   }
 
   bool AreExperimentalFlagsEnabled(ExperimentalFlags flags) {
-    return (experimental_flags_ & flags) != ExperimentalFlags::kNone;
+    return (experimental_flags_ & flags) != ExperimentalFlags::kNothing;
   }
 
   lambda::BoxTable* GetLambdaBoxTable() const {
@@ -805,7 +805,7 @@ class Runtime {
   // Transaction used for pre-initializing classes at compilation time.
   Transaction* preinitialization_transaction_;
 
-  // If kNone, verification is disabled. kEnable by default.
+  // If kNothing, verification is disabled. kEnable by default.
   verifier::VerifyMode verify_;
 
   // If true, the runtime may use dex files directly with the interpreter if an oat file is not

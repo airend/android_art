@@ -25,33 +25,33 @@ namespace art {
 struct ExperimentalFlags {
   // The actual flag values.
   enum {
-    kNone           = 0x0000,
+    kNothing        = 0x0000,
     kLambdas        = 0x0001,
   };
 
   constexpr ExperimentalFlags() : value_(0x0000) {}
-  constexpr ExperimentalFlags(decltype(kNone) t) : value_(static_cast<uint32_t>(t)) {}
+  constexpr ExperimentalFlags(decltype(kNothing) t) : value_(static_cast<uint32_t>(t)) {}
 
-  constexpr operator decltype(kNone)() const {
-    return static_cast<decltype(kNone)>(value_);
+  constexpr operator decltype(kNothing)() const {
+    return static_cast<decltype(kNothing)>(value_);
   }
 
   constexpr explicit operator bool() const {
-    return value_ != kNone;
+    return value_ != kNothing;
   }
 
-  constexpr ExperimentalFlags operator|(const decltype(kNone)& b) const {
-    return static_cast<decltype(kNone)>(value_ | static_cast<uint32_t>(b));
+  constexpr ExperimentalFlags operator|(const decltype(kNothing)& b) const {
+    return static_cast<decltype(kNothing)>(value_ | static_cast<uint32_t>(b));
   }
   constexpr ExperimentalFlags operator|(const ExperimentalFlags& b) const {
-    return static_cast<decltype(kNone)>(value_ | b.value_);
+    return static_cast<decltype(kNothing)>(value_ | b.value_);
   }
 
   constexpr ExperimentalFlags operator&(const ExperimentalFlags& b) const {
-    return static_cast<decltype(kNone)>(value_ & b.value_);
+    return static_cast<decltype(kNothing)>(value_ & b.value_);
   }
-  constexpr ExperimentalFlags operator&(const decltype(kNone)& b) const {
-    return static_cast<decltype(kNone)>(value_ & static_cast<uint32_t>(b));
+  constexpr ExperimentalFlags operator&(const decltype(kNothing)& b) const {
+    return static_cast<decltype(kNothing)>(value_ & static_cast<uint32_t>(b));
   }
 
   constexpr bool operator==(const ExperimentalFlags& b) const {
@@ -69,12 +69,12 @@ inline std::ostream& operator<<(std::ostream& stream, const ExperimentalFlags& e
     started = true;
   }
   if (!started) {
-    stream << "kNone";
+    stream << "kNothing";
   }
   return stream;
 }
 
-inline std::ostream& operator<<(std::ostream& stream, const decltype(ExperimentalFlags::kNone)& e) {
+inline std::ostream& operator<<(std::ostream& stream, const decltype(ExperimentalFlags::kNothing)& e) {
   return stream << ExperimentalFlags(e);
 }
 

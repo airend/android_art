@@ -543,12 +543,12 @@ TEST_F(CmdlineParserTest, TestProfilerOptions) {
 /* -Xexperimental:_ */
 TEST_F(CmdlineParserTest, TestExperimentalFlags) {
   // Default
-  EXPECT_SINGLE_PARSE_DEFAULT_VALUE(ExperimentalFlags::kNone,
+  EXPECT_SINGLE_PARSE_DEFAULT_VALUE(ExperimentalFlags::kNothing,
                                     "",
                                     M::Experimental);
 
   // Disabled explicitly
-  EXPECT_SINGLE_PARSE_VALUE(ExperimentalFlags::kNone,
+  EXPECT_SINGLE_PARSE_VALUE(ExperimentalFlags::kNothing,
                             "-Xexperimental:none",
                             M::Experimental);
 

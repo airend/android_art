@@ -918,7 +918,7 @@ void CodeGenerator::EmitEnvironment(HEnvironment* environment, SlowPathCode* slo
 
     Location location = environment->GetLocationAt(i);
     switch (location.GetKind()) {
-      case Location::kConstant: {
+      case Location::kConst: {
         DCHECK_EQ(current, location.GetConstant());
         if (current->IsLongConstant()) {
           int64_t value = current->AsLongConstant()->GetValue();

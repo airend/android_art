@@ -490,7 +490,7 @@ namespace art {
                    "updated by-ref as a side effect and shouldn't be stored directly");
         TArg val = value;
         save_argument_(val);
-        return CmdlineResult(CmdlineResult::kSuccess);
+        return CmdlineResult(CmdlineResult::kSuccCmd);
       }
 
       CmdlineParserArgumentInfo<TArg> argument_info_;

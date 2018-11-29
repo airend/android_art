@@ -429,9 +429,9 @@ static Intrinsics GetIntrinsic(InlineMethod method) {
       }
     }
     case kIntrinsicUnsafePut: {
-      enum Sync { kNoSync, kVolatile, kOrdered };
+      enum Sync { kNoSync, kVolatOpt, kOrdered };
       const Sync sync =
-          ((method.d.data & kIntrinsicFlagIsVolatile) != 0) ? kVolatile :
+          ((method.d.data & kIntrinsicFlagIsVolatile) != 0) ? kVolatOpt :
           ((method.d.data & kIntrinsicFlagIsOrdered) != 0)  ? kOrdered :
                                                               kNoSync;
       switch (GetType(method.d.data, false)) {
@@ -439,7 +439,7 @@ static Intrinsics GetIntrinsic(InlineMethod method) {
           switch (sync) {
             case kNoSync:
               return Intrinsics::kUnsafePut;
-            case kVolatile:
+            case kVolatOpt:
               return Intrinsics::kUnsafePutVolatile;
             case kOrdered:
               return Intrinsics::kUnsafePutOrdered;
@@ -449,7 +449,7 @@ static Intrinsics GetIntrinsic(InlineMethod method) {
           switch (sync) {
             case kNoSync:
               return Intrinsics::kUnsafePutLong;
-            case kVolatile:
+            case kVolatOpt:
               return Intrinsics::kUnsafePutLongVolatile;
             case kOrdered:
               return Intrinsics::kUnsafePutLongOrdered;
@@ -459,7 +459,7 @@ static Intrinsics GetIntrinsic(InlineMethod method) {
           switch (sync) {
             case kNoSync:
               return Intrinsics::kUnsafePutObject;
-            case kVolatile:
+            case kVolatOpt:
               return Intrinsics::kUnsafePutObjectVolatile;
             case kOrdered:
               return Intrinsics::kUnsafePutObjectOrdered;

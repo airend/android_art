@@ -102,7 +102,7 @@ class CompilerOptions FINAL {
   }
 
   bool NeverVerify() const {
-    return compiler_filter_ == CompilerFilter::kVerifyNone;
+    return compiler_filter_ == CompilerFilter::kVerifyNothing;
   }
 
   bool VerifyOnlyProfile() const {

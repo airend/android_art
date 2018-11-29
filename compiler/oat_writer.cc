@@ -129,13 +129,13 @@ class OatWriter::DexFileSource {
   }
 
   void Clear() {
-    type_ = kNone;
+    type_ = kNothing;
     source_ = nullptr;
   }
 
  private:
   enum Type {
-    kNone,
+    kNothing,
     kZipEntry,
     kRawFile,
     kRawData,
