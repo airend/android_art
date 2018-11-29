@@ -130,7 +130,7 @@ class Transaction FINAL {
       kShort,
       k32Bits,
       k64Bits,
-      kReference
+      kRefTrans
     };
     struct FieldValue : public ValueObject {
       // TODO use JValue instead ?

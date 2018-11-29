@@ -1778,7 +1778,10 @@ class HInstruction : public ArenaObject<kArenaAllocInstruction> {
 
 #define DECLARE_KIND(type, super) k##type,
   enum InstructionKind {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshadow"
     FOR_EACH_INSTRUCTION(DECLARE_KIND)
+#pragma clang diagnostic pop
   };
 #undef DECLARE_KIND
 

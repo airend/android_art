@@ -323,7 +323,7 @@ void Transaction::ObjectLog::Log64BitsValue(MemberOffset offset, uint64_t value,
 }
 
 void Transaction::ObjectLog::LogReferenceValue(MemberOffset offset, mirror::Object* obj, bool is_volatile) {
-  LogValue(ObjectLog::kReference, offset, reinterpret_cast<uintptr_t>(obj), is_volatile);
+  LogValue(ObjectLog::kRefTrans, offset, reinterpret_cast<uintptr_t>(obj), is_volatile);
 }
 
 void Transaction::ObjectLog::LogValue(ObjectLog::FieldValueKind kind,
@@ -415,7 +415,7 @@ void Transaction::ObjectLog::UndoFieldWrite(mirror::Object* obj, MemberOffset fi
         obj->SetField64<false, kCheckTransaction>(field_offset, field_value.value);
       }
       break;
-    case kReference:
+    case kRefTrans:
       if (UNLIKELY(field_value.is_volatile)) {
         obj->SetFieldObjectVolatile<false, kCheckTransaction>(field_offset,
                                                               reinterpret_cast<mirror::Object*>(field_value.value));
@@ -433,7 +433,7 @@ void Transaction::ObjectLog::UndoFieldWrite(mirror::Object* obj, MemberOffset fi
 void Transaction::ObjectLog::VisitRoots(RootVisitor* visitor) {
   for (auto it : field_values_) {
     FieldValue& field_value = it.second;
-    if (field_value.kind == ObjectLog::kReference) {
+    if (field_value.kind == ObjectLog::kRefTrans) {
       visitor->VisitRootIfNonNull(reinterpret_cast<mirror::Object**>(&field_value.value),
                                   RootInfo(kRootUnknown));
     }

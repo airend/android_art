@@ -44,7 +44,7 @@ class Location : public ValueObject {
 
   enum Kind {
     kInvalid = 0,
-    kConstant = 1,
+    kConst = 1,
     kStackSlot = 2,  // 32bit stack slot.
     kDoubleStackSlot = 3,  // 64bit stack slot.
 
@@ -70,16 +70,16 @@ class Location : public ValueObject {
   };
 
   Location() : ValueObject(), value_(kInvalid) {
-    // Verify that non-constant location kinds do not interfere with kConstant.
-    static_assert((kInvalid & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kUnallocated & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kStackSlot & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kDoubleStackSlot & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kRegister & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kFpuRegister & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kRegisterPair & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kFpuRegisterPair & kLocationConstantMask) != kConstant, "TagError");
-    static_assert((kConstant & kLocationConstantMask) == kConstant, "TagError");
+    // Verify that non-constant location kinds do not interfere with kConst.
+    static_assert((kInvalid & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kUnallocated & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kStackSlot & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kDoubleStackSlot & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kRegister & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kFpuRegister & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kRegisterPair & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kFpuRegisterPair & kLocationConstantMask) != kConst, "TagError");
+    static_assert((kConst & kLocationConstantMask) == kConst, "TagError");
 
     DCHECK(!IsValid());
   }
@@ -92,12 +92,12 @@ class Location : public ValueObject {
   }
 
   bool IsConstant() const {
-    return (value_ & kLocationConstantMask) == kConstant;
+    return (value_ & kLocationConstantMask) == kConst;
   }
 
   static Location ConstantLocation(HConstant* constant) {
     DCHECK(constant != nullptr);
-    return Location(kConstant | reinterpret_cast<uintptr_t>(constant));
+    return Location(kConst | reinterpret_cast<uintptr_t>(constant));
   }
 
   HConstant* GetConstant() const {
@@ -275,7 +275,7 @@ class Location : public ValueObject {
   }
 
   Kind GetKind() const {
-    return IsConstant() ? kConstant : KindField::Decode(value_);
+    return IsConstant() ? kConst : KindField::Decode(value_);
   }
 
   bool Equals(Location other) const {
@@ -312,7 +312,7 @@ class Location : public ValueObject {
       case kStackSlot: return "S";
       case kDoubleStackSlot: return "DS";
       case kUnallocated: return "U";
-      case kConstant: return "C";
+      case kConst: return "C";
       case kFpuRegister: return "F";
       case kRegisterPair: return "RP";
       case kFpuRegisterPair: return "FP";
@@ -401,7 +401,7 @@ class Location : public ValueObject {
 
   // Location either contains kind and payload fields or a tagged handle for
   // a constant locations. Values of enumeration Kind are selected in such a
-  // way that none of them can be interpreted as a kConstant tag.
+  // way that none of them can be interpreted as a kConst tag.
   uintptr_t value_;
 };
 std::ostream& operator<<(std::ostream& os, const Location::Kind& rhs);

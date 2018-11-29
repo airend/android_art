@@ -851,7 +851,7 @@ template<>
 struct CmdlineType<ExperimentalFlags> : CmdlineTypeParser<ExperimentalFlags> {
   Result ParseAndAppend(const std::string& option, ExperimentalFlags& existing) {
     if (option == "none") {
-      existing = ExperimentalFlags::kNone;
+      existing = ExperimentalFlags::kNothing;
     } else if (option == "lambdas") {
       existing = existing | ExperimentalFlags::kLambdas;
     } else {

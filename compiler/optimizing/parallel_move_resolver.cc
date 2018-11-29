@@ -454,7 +454,7 @@ void ParallelMoveResolverNoSwap::PerformMove(size_t index) {
     // (A -> B) (B -> C)  # Unblocked.
     // (scratch -> A)     # Add to pending_moves_, blocked by (A -> B).
     Location::Kind kind = source.GetKind();
-    DCHECK_NE(kind, Location::kConstant);
+    DCHECK_NE(kind, Location::kConst);
     Location scratch = AllocateScratchLocationFor(kind);
     // We only care about the move size.
     Primitive::Type type = move->Is64BitMove() ? Primitive::kPrimLong : Primitive::kPrimInt;

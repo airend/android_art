@@ -30,7 +30,7 @@ class CompilerFilter FINAL {
   // Note: Order here matters. Later filter choices are considered "as good
   // as" earlier filter choices.
   enum Filter {
-    kVerifyNone,          // Skip verification but mark all classes as verified anyway.
+    kVerifyNothing,       // Skip verification but mark all classes as verified anyway.
     kVerifyAtRuntime,     // Delay verication to runtime, do not compile anything.
     kVerifyProfile,       // Verify only the classes in the profile, compile only JNI stubs.
     kInterpretOnly,       // Verify everything, compile only JNI stubs.

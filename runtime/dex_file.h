@@ -1561,7 +1561,7 @@ class EncodedStaticFieldValueIterator {
     kInt = 0x04,
     kLong = 0x06,
     kFloat = 0x10,
-    kDouble = 0x11,
+    kDblDex = 0x11,
     kString = 0x17,
     kType = 0x18,
     kField = 0x19,

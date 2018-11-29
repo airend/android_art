@@ -1098,7 +1098,7 @@ static void dumpSFieldValue(const DexFile* pDexFile,
     case EncodedStaticFieldValueIterator::kFloat:
       fprintf(gOutFile, "%f", pValue->f);
       break;
-    case EncodedStaticFieldValueIterator::kDouble:
+    case EncodedStaticFieldValueIterator::kDblDex:
       fprintf(gOutFile, "%f", pValue->d);
       break;
     case EncodedStaticFieldValueIterator::kString: {
